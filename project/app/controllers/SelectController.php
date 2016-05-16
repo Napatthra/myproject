@@ -14,6 +14,10 @@ class SelectController extends BaseController
 		Session::forget('linkvideo');
 		Session::forget('name');
 	}
+	public function findframe(){
+		$framee =new Framee;
+		$framee=$framee->findframe($lat1,$lng1,$lat2,$lng2);
+	}
 	public function selectimage(){
 		$lat1=$_POST["lat_from"];
 		$lng1=$_POST["lng_from"];
@@ -30,12 +34,14 @@ class SelectController extends BaseController
 			$lng1=$lng2;
 			$lng2=$x;
 		}
-		$framee =new Framee;
-		$framee=$framee->findframe($lat1,$lng1,$lat2,$lng2);
-		if(!isset($framee[0]->id_frame))return Redirect::to('map')->with('flash_notice','พื้นที่นี้ยังไม่มีให้บริการ');//เชคว่าพื้นที่นั้นไม่มีเฟรม
 		
 		//===================================FINDFRAME========================================
 		//////////////////////////////////////////////////////////////////////////////////////
+		
+		$framee =new Framee;
+		$framee=$framee->findframe($lat1,$lng1,$lat2,$lng2);
+		if(!isset($framee[0]->id_frame))return Redirect::to('map')->header('Content-Type','พื้นที่นี้ยังไม่มีให้บริการ');//เชคว่าพื้นที่นั้นไม่มีเฟรม
+		
 		$conframe=0;$i=0;$haveimg=true;
 		while(isset($framee[$i]->id_frame)){
 			$frame[$i]=$framee[$i]->id_frame;
@@ -51,14 +57,14 @@ class SelectController extends BaseController
 		}
 		if($conframe<4&&$conframe>count($framee)){
 			echo $conframe;
-			echo "ไม่มีเฟรมครอบคลุม พท."; //กรณีที่เฟรมไม่ถึงสี่เฟรมจะจับไม่ได้
+			$mes="ไม่มีเฟรมครอบคลุม พท."; //กรณีที่เฟรมไม่ถึงสี่เฟรมจะจับไม่ได้
 		}
-		if(!$haveimg)return Redirect::to('map')->with('flash_notice','พื้นที่นี้ยังไม่มีให้บริการ');//บอกว่าพทนั้นไม่มีเฟรม
+		if(!$haveimg)return Redirect::to('map')->header('Content-Type','พื้นที่นี้ยังไม่มีให้บริการ');//บอกว่าพทนั้นไม่มีเฟรม
 		////////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////////////
 		
 		//////=======================check date not dup==================================================
-		////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 		$date=$alldate[0];
 		$i=1;$l=0;
 		while(isset($alldate[$i])){

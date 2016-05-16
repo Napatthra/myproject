@@ -53,6 +53,12 @@
 			$new->save();
 		}
 
+		public function editpassword($id){
+			$edit = UserLoginEloquent::find($id);
+			if($edit==NULL)return "username not found";
+			$edit->password		= $this->password;
+			$edit->save();
+		}
 		public function editUserLogin(){
 			$edit = UserLoginEloquent::find($this->id);
 			$edit->name			= $this->name;

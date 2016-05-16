@@ -73,21 +73,24 @@
 <p style="color:red;font-size:18px;margin:0;padding:10px 0px;text-align:center;">
 	รูปภาพต้องมีขนาด 346 x 355 pixel
 </p>
-
+<div align="center">
 <form action="upload" method="post" enctype="multipart/form-data">
- <font size="4pt"><div class=" col-lg-6">
-  Date:<input type="text" name="date"></div>
-  <div class=" col-lg-6">
-  Frame:<input type="text" name="frame"></div><br>
+ <font size="4pt">
    Please select image to upload:
  </font>
     <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 <div class="fileUpload btn btn-primary">
     <span>Choose</span>
     <input id="uploadBtn" type="file" name="file" class="upload" />
-</div>
-    <input type="submit" value="Upload" class="btn btn-success" >
+</div><div class=" col-lg-6">
+ <font size="4pt"> Date:<input type="text" name="date"></div>
+  <div class=" col-lg-6">
+  Frame:<input type="text" name="frame"></div></font>
+    <br><br><br><input type="submit" value="Upload" class="btn btn-success" >
 </form>
+</div>
+</div>
+
 <div align="center">
   <font color="red">FRAME IN DATABASE</font><br>
 @for ($i=0; $i <count($framee) ; $i++)

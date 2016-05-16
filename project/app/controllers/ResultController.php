@@ -46,6 +46,7 @@ class ResultController extends BaseController
 		$i=0;
 		while(isset($frame[$i])){
 			$j=1;
+			$imgname=$imgname.' /var/www/html/project/public/image/'.$date[0].'_'.$frame[$i].'.jpg';
 			while(isset($date[$j])){
 				$imgname=$imgname.' /var/www/html/project/public/compareimg/'.$imgnum.'.jpg';
 				$imgnum++;

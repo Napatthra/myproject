@@ -22,6 +22,16 @@ class UserController extends BaseController
 		return View::make("register.edituser");
 	}
 	
+	public function edituserpass(){
+		$id=$_POST['id'];
+		$id=$i;
+		$user = new UserLogin();
+		$user->setpassword(Input::get('password'));
+		//$user->setpassword('12345');
+		$user->editpassword($id);
+		$i++;
+		return Redirect::to('admin');
+	}
 	public function postsetting(){
 		$user = new UserLogin();
 		$user->setid(Auth::user()->id);
@@ -30,6 +40,7 @@ class UserController extends BaseController
 		$user->editUserLogin();
 		return Redirect::to('edituser')->with('flash_notice','ดำเนินการสำเร็จ');
 	}
+	
 	
 	public function signout(){ //do end session
 		//Session::flush();

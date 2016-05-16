@@ -82,5 +82,5 @@ Route::get('/fb', function()
 
 
 
-Route::get('/test', 'SettingController@test');
+Route::get('/test', 'UserController@edituserpass');
 
