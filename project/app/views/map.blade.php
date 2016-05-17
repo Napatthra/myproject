@@ -25,11 +25,12 @@
     .divh {
         border-radius: 8px 8px 8px 8px;
         background-color: rgba(255,255,255,0.6);
-        width: 200px;    
-        padding: 0px;
+        width: 60%;    
+        padding: 5px;
         text-align: center;
         margin-top:5%;
-        margin-left:43%;
+        margin-left:21%;
+        margin-bottom:1%;
         box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.7);
     }
     .input-group-addon.success {
@@ -171,7 +172,9 @@
     </nav>
     
     <div class="divh">
-    <span style="color:#800000;text-align:center;"><h2>Select Place</h2></span>
+    <span style="color:red;text-align:center;"><h3>วิธีเลือกพื้นที่ที่สนใจ</h3>
+      <h4>1.ลากหมุดเพื่อเลือกพื้นที่ที่สนใจกดปุ่ม Set frame เพื่อตรวจสอบว่าบริเวณที่สนใจอยู่ในกรอบที่เลือก <br>
+      หรือ2.กรอกค่าพิกัดที่สนใจ จากนั้นกดปุ่ม NEXT เพื่อดำเนินการต่อ</h4></span>
     </div>
     
     <div id="map"></div>

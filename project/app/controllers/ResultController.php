@@ -10,6 +10,7 @@ class ResultController extends BaseController
 	public function sumperchange(){
 		$out=Session::get('perchangefordb');
 		$frame=Session::get('frame');
+		var_dump($frame);
 		$perchange=array();
 		$i=1;$j=0;
 		while(isset($out[$j][$i])){

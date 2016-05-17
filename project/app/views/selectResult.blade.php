@@ -70,7 +70,7 @@
     </div> -->
 
     <div class="divb">
-      <div class="text-center"><h2 style="color:#800000;"><b>PLEASE &nbsp; SELECT &nbsp; RESULT</b></h2></div>
+      <div class="text-center"><h2 style="color:#800000;"><b>SELECT &nbsp; RESULT</b></h2></div>
       <br><br>
       <div class="row">
         <div class="col-lg-12">

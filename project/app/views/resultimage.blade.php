@@ -66,17 +66,19 @@
   	<div class="container">
 	  	<div class="panel panel-default">
 		    <div class="panel-body">
-		    	@for ($i=0; $i <count($frame) ; $i++)
+                @for ($i=0; $i <count($frame) ; $i++)
 		    	<div class="row" align="center">
 		    		
 		    		<div class="col-lg-3" align="center">
 		    		<b><font color="red">AREA{{$i+1}}: {{$date[0]}}</font></b>
-		    		<img src="image/{{$date[0]}}_1.jpg" style="width:250px;height:250px;" >
+		    		<img src="image/{{$date[0]}}_{{$frame[$i]}}.jpg" style="width:250px;height:250px;" >
 		    		</div>
 		    		@for ($j=2; $j <=count($date) ; $j++)
+
 		    		<div class="col-lg-3" align="center">
 		    		<b><font color="red">AREA{{$i+1}}: {{$date[$j-1]}}</font></b>
-		    		<img src="compareimg/{{$j}}.jpg" style="width:250px;height:250px;">
+                    <?php $r=$imgstart+$i+$j-1;?>
+		    		<img src="compareimg/{{$r}}.jpg" style="width:250px;height:250px;">
 		    		</div>
 		    		@endfor
 		    	</div><br>

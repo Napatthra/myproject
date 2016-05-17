@@ -94,11 +94,11 @@
 </div>
 
     <div class="divb">  
-       <!-- <p style="color:red;font-size:18px;margin:0;padding:10px 0px;text-align:center;">กรุณาเลือกช่วงปีที่สนใจ</p>
+       <p style="color:red;font-size:18px;margin:0;padding:10px 0px;text-align:center;">กรุณาเลือกช่วงปีที่สนใจ</p>
 
       <div class="dropdown" style="text-align: center;margin-left: 40%;">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" style="text-align: center;">Select year
-        <span class="caret"></span></button> -->
+        <span class="caret"></span></button>
 
         <?php
        
@@ -113,27 +113,23 @@
         };
         ?>
         
-       <!--  
-        <ul class="dropdown-menu" > <form action="#">
+        
+        <ul class="dropdown-menu" id="selectyear"> 
           @for($i=0;$i<count($year);$i++)
-          <li><label style="margin-left:10px;" class="checkbox-inline"><p><input type="checkbox" name="year[]" value="{{$year[$i]}}">{{$year[$i]}}</p></label></li>
+          <li><label style="margin-left:10px;" class="checkbox-inline"><p><input type="checkbox" name="year{{$i}}" value="{{$year[$i]}}">{{$year[$i]}}</p></label></li>
           @endfor
         </ul>
       </div>
-        <button  class="btn btn-success"  >Search</button>
-        </form>
-       <div id="output"></div> -->
+        <button  class="btn btn-success" onclick="myFunction()" >Search</button>
+        
+       <div id="output"></div>
 
       <form id="date" name="date" method="post" action="/selectResult">
         <p style="color:red;font-size:18px;margin:0;padding:10px 0px;text-align:center;">กรุณาเลือกวันที่ที่สนใจ โดยระบบจะนำวันที่ที่เก่าที่สุดที่ผู้ใช้เลือกมาเป็นรูปภาพตั้งต้นในการเปรียบเทียบ</p>
 
 
 
-        <div class="row">
-         @for ($i=0; $i <count($date) ; $i++)
-            <label class="checkbox-inline"><h3><input type="checkbox" name="date[]" value="{{$date[$i]}}">{{$date[$i]}}</h3></label>
-        @endfor
-         
+        <div class="row" id="outputdate" ></div>
          
 
           <div class="row">
@@ -149,8 +145,21 @@
   <script>
 
       function myFunction() {
-        document.getElementById('output').innerHTML = {{$year[0]}};
-              }
+        $('#outputdate').children('label').remove();
+        $('#selectyear').each(function(){
+          $(this).find('li').each(function(){
+            if ( $(this).find('input').is(':checked') == true ){
+              var year = $(this).find('input').val();
+              @for ($i=0; $i <count($date) ; $i++)
+                if(year==("{{$date[$i]}}").substr(0,4)){
+                  $("#outputdate").append('<label id="datelabel" class="checkbox-inline"><h3><input type="checkbox" name="date[]" value="{{$date[$i]}}">{{$date[$i]}}</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</label>');
+                }
+              @endfor
+            }
+          });
+        });
+       
+      }
 
     </script>
 </html>

@@ -20,6 +20,9 @@ Route::group(array('before' => 'role'), function() {
 	Route::post('/admin', 'ImageController@adminset');
 	 Route::post('/upload', 'SettingController@uploadimg');
 	Route::get('/upload', 'SettingController@getallimg');
+	Route::get('/manageuser', 'SettingController@getalluser');
+	Route::post('/edituserpass', 'UserController@edituserpass');
+	Route::post('/deleteuser', 'SettingController@deluser');
 });
 
 Route::group(array('before' => 'selectarea'), function () {
@@ -80,7 +83,17 @@ Route::get('/fb', function()
 // });
 
 
+Route::get('/mail',function(){
+	$data=[
+	'title'=>'',
+	'content'=>'พื้นที่มีการเปลี่ยนแปลง'
+	];
+	Mail::send('emails.welcome',$data,function($message){
+		$message->to('nattha.cbc@gmail.com','tt')->subject('NOTI');
+	});
+});
 
 
-Route::get('/test', 'UserController@edituserpass');
+Route::get('/test', 'notiController@autocompare');
+Route::get('/debug', 'notiController@debug');
 

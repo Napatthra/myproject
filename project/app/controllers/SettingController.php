@@ -3,6 +3,15 @@
 class SettingController extends BaseController
 {
 	
+	public function getalluser(){
+		$temp=UserLogin::getall();
+		return View::make('manageuser')->with(array("data"=>$temp));
+	}
+	public function deluser(){
+		$id=$_POST['id'];
+		UserLogin::deletee($id);
+		return Redirect::to('/manageuser');
+	}
 	public function getadminnoti(){
 		$temp=Futarea::getall();
 		var_dump($temp);

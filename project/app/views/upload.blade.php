@@ -95,7 +95,7 @@
   <font color="red">FRAME IN DATABASE</font><br>
 @for ($i=0; $i <count($framee) ; $i++)
 <font color="red">FRAME{{$framee[$i]->getid_frame()}}</font>:
-({{$framee[$i]->getlat1()}},{{$framee[$i]->getlng1()}}) to ({{$framee[$i]->getlat2()}},{{$framee[$i]->getlng1()}})<br>
+({{$framee[$i]->getlat1()}},{{$framee[$i]->getlng1()}}) to ({{$framee[$i]->getlat2()}},{{$framee[$i]->getlng2()}})<br>
 
 @endfor
 </div>
