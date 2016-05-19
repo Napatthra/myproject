@@ -3,24 +3,60 @@
 class SettingController extends BaseController
 {
 	
+	public function updateframe(){
+		$lat1=sprintf('%0.10f',$_POST["lat_from"]);
+		$lng1=sprintf('%0.10f',$_POST["lng_from"]);
+		$lat2=sprintf('%0.10f',$_POST["lat_to"]);
+		$lng2=sprintf('%0.10f',$_POST["lng_to"]);
+		$new=new Framee;$new->newFrame($lat1,$lng1,$lat2,$lng2);
+		echo "<script>
+		alert('ดำเนินการสำเร็จ');
+		window.location.href='/updateframe';
+		</script>";
+	}
+	public function delintframe(){
+		$id=$_POST['id'];
+		//var_dump($id);exit;
+		Intframe::deletee($id);
+		return Redirect::to('/admin');
+	}
+	public function saveintframe(){
+		$lat1=sprintf('%0.10f',$_POST["lat_from"]);
+		$lng1=sprintf('%0.10f',$_POST["lng_from"]);
+		$lat2=sprintf('%0.10f',$_POST["lat_to"]);
+		$lng2=sprintf('%0.10f',$_POST["lng_to"]);
+		$new=new Intframe;$new->newIntframe($lat1,$lng1,$lat2,$lng2);
+		echo "<script>
+		alert('ดำเนินการสำเร็จ');
+		window.location.href='/map';
+		</script>";
+	}
 	public function getalluser(){
 		$temp=UserLogin::getall();
+		//echo $temp[0]->getid(); exit;
 		return View::make('manageuser')->with(array("data"=>$temp));
 	}
 	public function deluser(){
 		$id=$_POST['id'];
+		//var_dump($id);exit;
 		UserLogin::deletee($id);
 		return Redirect::to('/manageuser');
 	}
 	public function getadminnoti(){
 		$temp=Futarea::getall();
-		var_dump($temp);
-		return View::make('admin')->with(array("notiarea"=>$temp));
+		$temp2=Intframe::getall();
+		//var_dump($temp2); exit;
+		return View::make('admin')->with(array("notiarea"=>$temp , "notiframe"=>$temp2));
 	}
 	public function getallimg(){
 		$temp=Framee::getall();
 		//var_dump($temp);
 		return View::make('upload')->with(array("framee"=>$temp));
+	}
+	public function getallframe(){
+		$temp=Framee::getall();
+		//var_dump($temp);
+		return View::make('updateframe')->with(array("framee"=>$temp));
 	}
 	
 	public function getintarea(){
@@ -30,10 +66,12 @@ class SettingController extends BaseController
 		$temp2=array();
 		while(isset($temp[$i])){
 			$id=$temp[$i]->getid_intarea();
-			$temp2[$i]=Change::getbyintarea($id);
+			$temp2[$i]=Change::getdatee($id);
 			$i++;
 		}
+		//echo($i);
 		//var_dump($temp2);
+		//var_dump($temp);exit;
 		return View::make('inter')->with(array("data"=>$temp , "date2"=>$temp2));
 	}
 	public function getfutarea(){
@@ -115,7 +153,7 @@ class SettingController extends BaseController
 		$control->clearsession();
 		$intarea=Intarea::getbyid($id_intarea);
 		$change=Change::getforshow($id_intarea);
-		//var_dump($intarea);
+		//var_dump($change['date']);exit;
 		Session::put('lat1', $intarea->getlat1());
 		Session::put('lng1', $intarea->getlng1());
 		Session::put('lat2', $intarea->getlat2());

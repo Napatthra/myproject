@@ -62,10 +62,12 @@ class Change{
 		$temp['imgstart']=ChangeEloquent::where('id_intarea',$id_intarea);
 		$temp['imgstart']=$temp['imgstart']->min('id_change');
 		$temp['frame']=ChangeEloquent::where('id_intarea',$id_intarea)->distinct()->lists('id_frame');
-		$temp['frame']=$temp['frame'][0];
+		var_dump($temp['frame']);
+		$temp['frame']=$temp['frame'];
 		$date2=ChangeEloquent::where('id_intarea',$id_intarea)->distinct()->lists('date2');
 		$date1=ChangeEloquent::where('id_intarea',$id_intarea)->distinct()->lists('date1');
 		$temp['date']=array_merge($date1,$date2);
+		//var_dump($temp['date']);exit;
 		//$perchange
 		$j=0;
 		while(isset($temp['frame'][$j])){
@@ -81,6 +83,12 @@ class Change{
 			$j++;
 		}
 		return $temp;
+	}
+	public static function getdatee($id_intarea){
+		$date2=ChangeEloquent::where('id_intarea',$id_intarea)->distinct()->lists('date2');
+		$date1=ChangeEloquent::where('id_intarea',$id_intarea)->distinct()->lists('date1');
+		$datee=array_merge($date1,$date2);
+		return $datee;
 	}
 	public static function getbyintarea($id_intarea){
 				$data=ChangeEloquent::where('id_intarea',$id_intarea)->get();

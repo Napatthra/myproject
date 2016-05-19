@@ -52,6 +52,7 @@
     <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="/login"><font color="#ffffff"><span class="glyphicon glyphicon-log-in"></span> Login &nbsp;&nbsp; </font></a></li> -->
           @if(Auth::check())
+          @if(Auth::user()->status=='A' )<li><a href="/admin"><font color="#ffffff"><span class="glyphicon glyphicon-user"></span> ADMIN &nbsp;&nbsp; </font></a></li>@endif
           <li><a href="/info"><font color="#ffffff"><span class="glyphicon glyphicon-user"></span>
               <?php
               $id = Auth::user()->id;
@@ -89,17 +90,23 @@ $email=$u->getById($id);
           <div class="col-lg-offset-1">  
                   <h3><b>Name :</b><?php echo $name->getname(); ?></h3>
                 
-                <h3><b>E-mail :</b><?php echo Auth::user()->email ?></h3>
-             <a href="admin" class="btn btn-success btn-lg" >ADMIN</a>
-             <div class="col-lg-offset-1"><div class=" row">
-              <br>
-              <!-- <div class="text-center"> -->
-                <a href="inter" target="_blank" class="btn btn-primary btn-lg" >My interest areas</a>
-                <a href="percent" target="_blank" class="btn btn-primary btn-lg" >Area to notifications</a>
-              <!-- </div> -->
+                <h3><b>E-mail :</b><?php echo Auth::user()->email ?></h3><br>
+             <tbody>
 
+
+             @if(Auth::user()->status=='A' )
+             <!-- <div class="col-lg-offset-1"> -->
+             <tr><td><a href="admin" class="btn btn-success btn-lg" >ADMIN</a> <td>
+             <td><a href="manageuser" class="btn btn-success btn-lg" >MANAGE USER</a></td><tr>@endif
+             <!-- <div class="col-lg-offset-1"><div class=" row"> -->
+              <!-- <br> -->
+              <!-- <div class="text-center"> --><br><br>
+               <tr><td> <a href="inter" target="_blank" class="btn btn-primary btn-lg" >My interest areas</a></td>
+                <td><a href="percent" target="_blank" class="btn btn-primary btn-lg" >Area to notifications</a></td>
+              <!-- </div> -->
+</tr>
               </div></div>
-            
+            </tbody>
             
               <!-- <div class="col-lg-6">
               <div class="text-center">

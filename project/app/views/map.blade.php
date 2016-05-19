@@ -52,8 +52,9 @@
       function initialize() {
 
         var mapOptions = {
-          zoom: 15,
-          center: new google.maps.LatLng(13.7268,100.7801)
+          zoom: 18,
+          center: new google.maps.LatLng(13.7268,100.7801),
+           mapTypeId: google.maps.MapTypeId.SATELLITE
         };
         map = new google.maps.Map(document.getElementById('map'),
             mapOptions);
@@ -138,6 +139,9 @@
 
         
       }
+      function pan(){
+        // map.panTo(lat_to,lng_to);
+      }
         function addLine(){
            flightPath.setMap(map);
         }
@@ -172,14 +176,16 @@
     </nav>
     
     <div class="divh">
-    <span style="color:red;text-align:center;"><h3>วิธีเลือกพื้นที่ที่สนใจ</h3>
-      <h4>1.ลากหมุดเพื่อเลือกพื้นที่ที่สนใจกดปุ่ม Set frame เพื่อตรวจสอบว่าบริเวณที่สนใจอยู่ในกรอบที่เลือก <br>
-      หรือ2.กรอกค่าพิกัดที่สนใจ จากนั้นกดปุ่ม NEXT เพื่อดำเนินการต่อ</h4></span>
+    <span style="color:red;text-align:center;"><h4><b>วิธีเลือกพื้นที่ที่สนใจ</b></h4>
+      <h5>1.ลากหมุดเพื่อเลือกพื้นที่ที่สนใจกดปุ่ม Set frame เพื่อตรวจสอบว่าบริเวณที่สนใจอยู่ในกรอบที่เลือก <br>
+      หรือ2.กรอกค่าพิกัดที่สนใจ จากนั้นกดปุ่ม NEXT เพื่อดำเนินการต่อ<br>
+      หากพื้นที่ไม่มีในระบบ ผู้ใช้สามารถกรอกพิกัดที่สนใจแล้วกดปุ่ม Rrquest frame เพื่อแจ้งเตือนไปที่Adminเพื่อให้Adminเก็บภาพ
+      </h5></span>
     </div>
     
     <div id="map"></div>
     
-    <form id="form_get_detailMap" name="form_get_detailMap" method="post" action="/findframe">
+    <form id="myForm" name="form_get_detailMap" method="post" >
     
       <div class="row">
         
@@ -213,10 +219,12 @@
 				<span class="input-group-addon success" id="basic-addon1">Name of location</span>
 				<input name="name" type="text" id="name" value="" class="form-control" />
 			  </div>
-      
+        
+        <input class="btn btn-info" type="submit" id="second_btn" value="Request frame">
 			  <input onclick="subLine();" class="btn btn-danger" type=button value="Clear Frame">
-			  <input onclick="addLine();" class="btn btn-success" type=button value="Set Frame">
-			  <input class="btn btn-primary" type="submit" value="NEXT">
+			  <input onclick="addLine();pan();" class="btn btn-success" type=button value="Set Frame">
+			  <input class="btn btn-primary" type="submit" id="first_btn" value="NEXT">
+        
 			  <!-- <a href="tabledate" class="btn btn-primary" >NEXT <i class="fa fa-hand-o-left"></i></a> -->
 			</div>
 	
@@ -226,7 +234,22 @@
 
 
     <br>
-  
+
+<script>
+
+$('#first_btn').click(function(){
+    var form = document.getElementById("myForm")
+    form.action = "/findframe";
+    form.submit();
+});
+
+$('#second_btn').click(function(){
+    var form = document.getElementById("myForm")
+    form.action = "/saveintframe";
+    form.submit();
+});
+
+</script>
 
   </body>
 

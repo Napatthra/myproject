@@ -31,11 +31,13 @@
         margin-bottom: 2%;
         box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.7);
     }
+
+
     </style>
 
   </head>
  
-  <body style="background-image: url('bgs.jpg');">
+  <body style="background-image: url('bgs.png') ;">
     <nav class="navbar navbar-light  navbar-fixed-top" style="background-color: #666666;">
       <a class="navbar-brand" href="start"><font color="#ffffff">Environment Change Detection</font></a>
     <ul class="nav navbar-nav navbar-right">
@@ -65,7 +67,7 @@
 <div class="col-lg-offset-1 col-lg-10">
   	<div class="container">
 	  	<div class="panel panel-default">
-		    <div class="panel-body">
+		    <div class="panel-body"> <?php $k=0;?>
                 @for ($i=0; $i <count($frame) ; $i++)
 		    	<div class="row" align="center">
 		    		
@@ -73,15 +75,19 @@
 		    		<b><font color="red">AREA{{$i+1}}: {{$date[0]}}</font></b>
 		    		<img src="image/{{$date[0]}}_{{$frame[$i]}}.jpg" style="width:250px;height:250px;" >
 		    		</div>
+
 		    		@for ($j=2; $j <=count($date) ; $j++)
 
 		    		<div class="col-lg-3" align="center">
 		    		<b><font color="red">AREA{{$i+1}}: {{$date[$j-1]}}</font></b>
-                    <?php $r=$imgstart+$i+$j-1;?>
+                    <?php $r=$imgstart+$k;?>
 		    		<img src="compareimg/{{$r}}.jpg" style="width:250px;height:250px;">
-		    		</div>
+		    		
+                    <?php $k++;?></div>
 		    		@endfor
-		    	</div><br>
+		    	</div>
+
+                <br>
 		    	@endfor
 
 

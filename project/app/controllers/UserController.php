@@ -24,13 +24,16 @@ class UserController extends BaseController
 	
 	public function edituserpass(){
 		$id=$_POST['id'];
-		$id=$i;
 		$user = new UserLogin();
 		$user->setpassword(Input::get('password'));
 		//$user->setpassword('12345');
 		$user->editpassword($id);
-		$i++;
-		return Redirect::to('admin');
+		//$i++;
+		echo "<script>
+		alert('ดำเนินการสำเร็จ');
+		window.location.href='/manageuser';
+		</script>";
+		//return Redirect::to('mangeuser');
 	}
 	public function postsetting(){
 		$user = new UserLogin();

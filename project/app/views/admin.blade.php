@@ -157,7 +157,7 @@
     </div><div class="col-sm-offset-5">
     <input class="btn btn-success" type="submit" value="SET"> </div>
   </div>
-
+</form>
         <!-- <h4> <b>New size of block (maximum 346): </b></h4>
         <div class="col-lg-2"><input type="text" class="form-control" id="blog"></div> -->
       </div>
@@ -167,22 +167,39 @@
 
 <div class="col-lg-6">
         <div class="panel panel-success">
-          <div class="panel-heading"><div class="text-center"><h2>Notification</h2></div></div>
+          <div class="panel-heading"><div class="text-center"><h2>Notification for update image</h2></div></div>
           <div class="panel-body">
-            <h4 class="text-danger"><i class="fa fa-bullhorn"></i> Please update images (13.7270,100.7780) , (13.7248,100.7892) <input class="btn btn-success" type=button value="Update"></h4><br>
-            <h4 class="text-danger"><i class="fa fa-bullhorn"></i> Please update images (11.5640,102.6400) , (11.5800,102.6550) <input class="btn btn-success" type=button value="Update"></h4><br>
-            <h4 class="text-danger"><i class="fa fa-bullhorn"></i> Please update images (8.3600,120.5668) , (8.3680,120.5860) <input class="btn btn-success" type=button value="Update"></h4><br>
+            @for($i=0;$i<count($notiarea);$i++)
+            
+            <h4 class="text-danger"><i class="fa fa-bullhorn"></i> Please update images <br>
+              ({{$notiarea[$i]->getlat1()}},{{$notiarea[$i]->getlng1()}}) , ({{$notiarea[$i]->getlat2()}},{{$notiarea[$i]->getlng2()}}) </h4><br>
+                      
+            @endfor
+            <div class="text-center"><a href="/upload" class="btn btn-success">UPDATE IMAGE</a></div>
           </div>
         </div>
-
-       
-
-<script>
-  document.getElementById("uploadBtn").onchange = function () {
-    document.getElementById("uploadFile").value = this.value;
-};
-</script>
+      
+       <div class="panel panel-success">
+          <div class="panel-heading"><div class="text-center"><h2>Notification for update frame</h2></div></div>
+          <div class="panel-body">
+            <form action="/delintframe" method="POST">
+            @for($i=0;$i<count($notiframe);$i++)
+            
+            <h4 class="text-danger"><i class="fa fa-bullhorn"></i> Please update frame <br>
+              ({{$notiframe[$i]->getlat1()}},{{$notiframe[$i]->getlng1()}}) , ({{$notiframe[$i]->getlat2()}},{{$notiframe[$i]->getlng2()}}) </h4>
+                    
+                      <input type="hidden" name="id" value="{{$notiframe[$i]->getid_intframe()}}"></input>
+                      <button type="submit" class="btn btn-danger  ">DELETE</button>
+              <br>
+                      
+            @endfor
+			</form>
+            <div class="text-center"><a href="/updateframe" class="btn btn-success">UPDATE FRAME</a></div>
+          </div>
+        </div>
+      </div>
 </div>
+  
   
   </body>
 

@@ -10,7 +10,7 @@ class ResultController extends BaseController
 	public function sumperchange(){
 		$out=Session::get('perchangefordb');
 		$frame=Session::get('frame');
-		var_dump($frame);
+		//var_dump($frame);
 		$perchange=array();
 		$i=1;$j=0;
 		while(isset($out[$j][$i])){
@@ -33,8 +33,12 @@ class ResultController extends BaseController
 	}
 	public function makeimg(){
 		$date=Session::get('date');
-			$frame=Session::get('frame');
-			$imgstart=Session::get('imgstart');
+		$frame=Session::get('frame');
+		$imgstart=Session::get('imgstart');
+		//var_dump($date);
+		//var_dump($frame);
+		//var_dump($imgstart);exit;
+		
 		return View::make('resultimage')->with(array('date' => $date ,'frame' => $frame,'imgstart' => $imgstart ));;
 	}
 	public function makevideo(){
@@ -76,7 +80,7 @@ class ResultController extends BaseController
 					$j=0;
 					while(isset($perchange[$j])){
 						$pdfdate=$pdfdate.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-				.$date[$j+1].' &nbsp; have changed by  '.$perchange[$j].'%</div><br />';
+				.$date[$j+1].' &nbsp; have changed by  '.$perchange[$j].'%<br /><br />';
 						$j++;
 					}
 			$pdf = App::make('dompdf');

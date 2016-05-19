@@ -1,6 +1,6 @@
 <?php
 
-class FrameeEloquent extends Eloquent {
+class IntframeEloquent extends Eloquent {
 	public $table='tbl_intframe';
 	public $timestamps = false;
 }

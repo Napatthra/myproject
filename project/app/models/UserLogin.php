@@ -86,6 +86,7 @@
 			$temp=array();
 			while(isset($data[$i])){
 				$new=new UserLogin;
+				$new->id			= $data[$i]->id;
 				$new->name			= $data[$i]->name;
 				$new->email			= $data[$i]->email;
 				$new->password		= $data[$i]->password;
@@ -96,7 +97,7 @@
 		}
 		
 		public static function deletee($id){
-			$obj=FutareaEloquent::where('id',$id);
+			$obj=UserLoginEloquent::where('id',$id);
 			$obj->delete();
 		}
 	}

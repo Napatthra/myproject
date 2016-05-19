@@ -93,7 +93,7 @@ class SelectController extends BaseController
 			}
 			$i++;
 		}
-		var_dump($alldate);exit;
+		//var_dump($alldate);exit;
 		$k=0;$l=0;
 		while(isset($date[$k])){
 			if($date[$k]->imdate!=''){

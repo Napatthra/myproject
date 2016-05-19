@@ -8,7 +8,7 @@ class Intframe{
 		private $lng2;
 		
 		public function getid_intframe(){
-				return $this->id_frame;
+				return $this->id_intframe;
 		}
 		public function getlat1(){
 				return $this->lat1;
@@ -64,13 +64,13 @@ class Intframe{
 			return $temp;
 		}
 		public static function getall(){
-			$data=IntframeeEloquent::all();
-			//var_dump($data);
+			$data=IntframeEloquent::all();
+			//var_dump($data);exit;
 			$i=0;
 			$temp=array();
 			while(isset($data[$i])){
-				$new=new Intframee;
-				$new->id_frame		= $data[$i]->id_frame;
+				$new=new Intframe;
+				$new->id_intframe		= $data[$i]->id_intframe;
 				$new->lat1			= $data[$i]->lat1;
 				$new->lng1			= $data[$i]->lng1;
 				$new->lat2			= $data[$i]->lat2;
@@ -79,6 +79,11 @@ class Intframe{
 				$i++;
 			}
 			return $temp;
+		}
+		
+		public static function deletee($id_intframe){
+			$obj=IntframeEloquent::where('id_intframe',$id_intframe);
+			$obj->delete();
 		}
 	
 }

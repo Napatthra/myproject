@@ -86,10 +86,10 @@
                   <td>({{$data[$i]->getlat1()}},{{$data[$i]->getlng1()}})</td>
                    <td>({{$data[$i]->getlat2()}},{{$data[$i]->getlng2()}})</td>
                    
-                   <td>{{$date2[$i][0]->getdate1()}}</td>
+                   <td>{{$date2[$i][0]}}</td>
                    <td>
-                   @for ($j=0; $j <count($date2[$i]) ; $j++)
-                    {{$date2[$i][$j]->getdate2()}}<br>
+                   @for ($j=1; $j <count($date2[$i]) ; $j++)
+                    {{$date2[$i][$j]}}<br>
                    @endfor
                    </td>
                    <td>

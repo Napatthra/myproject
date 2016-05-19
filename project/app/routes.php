@@ -23,9 +23,12 @@ Route::group(array('before' => 'role'), function() {
 	Route::get('/manageuser', 'SettingController@getalluser');
 	Route::post('/edituserpass', 'UserController@edituserpass');
 	Route::post('/deleteuser', 'SettingController@deluser');
+	Route::post('/updateframe', 'SettingController@updateframe');
+	Route::get('/updateframe', 'SettingController@getallframe');
 });
 
 Route::group(array('before' => 'selectarea'), function () {
+	
 	Route::post('/selectResult', 'ImageController@compareimg');
 	Route::get('/selectResult', 'ResultController@selectResult');
 	Route::get('/resultImage', 'ResultController@makeimg');
@@ -54,6 +57,8 @@ Route::group(array('before' => 'auth'), function () {
 	Route::get('/savepercent', 'SettingController@savefutarea');
 });
 
+Route::post('/saveintframe', 'SettingController@saveintframe');
+Route::post('/delintframe', 'SettingController@delintframe');
 Route::get('/register', 'RegisterController@registerForm');
 Route::post('/register/create', 'RegisterController@registerCreate');
 Route::get('/login', 'UserController@getsignin');

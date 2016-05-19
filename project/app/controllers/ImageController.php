@@ -16,6 +16,12 @@ class ImageController extends BaseController
 		if($txt=='')$txt="0";
 		fwrite($myfile, $txt);
 		fclose($myfile);
+		echo "<script>
+		alert('ดำเนินการสำเร็จ');
+		window.location.href='/admin';
+		</script>";
+		//echo "<script type='text/javascript'>alert('ดำเนินการสำเร็จ');</script>";
+		//return Redirect::to('/admin');
 	}
 
 	public function compareimg(){

@@ -41,7 +41,7 @@ class Framee{
 		}
 		
 		public function newFrame($lat1,$lng1,$lat2,$lng2){
-				$new = new FrameEloquent;
+				$new = new FrameeEloquent;
 				$new->lat1			= $lat1;
 				$new->lng1			= $lng1;
 				$new->lat2			= $lat2;
